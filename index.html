@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <base href="/" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CivicUp | Community Board</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="icon" href="https://drrjhlchpvi7e.cloudfront.net/editor/acd4b40/img/favicon32.png" sizes="32x32">
+
+  <link rel="stylesheet" href="./dist/css/main.min.css">
+  <link rel="stylesheet" type="text/css" href="./dist/css/lib/prism.min.css">
+
+</head>
+<body class="container is-fluid is-marginless">
+
+  <!-- Nav -->
+  <div ng-controller="AccountController">
+    <section class="hero is-primary is-medium">
+
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-header">
+        <header class="header">
+          <div class="container">
+            <div class="header-left">
+              <a class="header-item" ui-sref="Home">
+                <img src="./dist/images/main.png" alt="Logo">
+              </a>
+            </div>
+            <span class="header-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <div class="header-right header-menu" ng-hide="currentUser">
+              <span class="header-item"  ng-cloak>
+                <a href="#" ng-click="login()">Login</a>
+              </span>
+              <span class="header-item" ng-cloak>
+                <a href="#" class="button is-warning" ng-click="login()">Sign Up <i class="fa fa-github"></i></a>
+              </span>
+            </div>
+            <div class="header-right header-menu" ng-show="currentUser">
+              <span class="header-item" ng-cloak>
+                <img ng-src="{{currentUser.profileImg}}">
+              </span>
+              <span class="header-item" ng-cloak>
+                <a href="#" class="is-solid" ng-bind="currentUser.displayName"></a>
+              </span>
+              <span class="header-item" ng-cloak>
+                <a class="button is-warning is-inverted is-outlined" ng-click="logout()">Logout</a>
+              </span>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="nav" ng-class="{ 'hidden' : show === false, 'home' : state !== 'Home' }">
+        <div class="hero-content">
+          <div class="container">
+            <h1 class="title flex justify-center valign-center">
+              <img  class="image is-64x64" src="./dist/images/main.png">&nbsp; Rise Up Community Board
+            </h1>
+            <br>
+            <h2 class="subtitle">
+              A community board for ranking and posting civic initiatives.
+            </h2>
+          </div>
+        </div>
+
+        <!-- Hero footer: will stick at the bottom -->
+        <div class="hero-footer" >
+          <nav class="tabs primary">
+            <div class="container">
+              <ul>
+                <li><a href="#" target="_blank">Link</a></li>
+                <li><a href="#" target="_blank">Link</a></li>
+                <li><a href="#" target="_blank">Link</a></li>
+                <li><a href="#" target="_blank">Link</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+    </section>
+  </div>
+  <!-- End Nav -->
+
+  <!-- Content -->
+  <ui-view></ui-view>
+
+  <!-- Slack Invite -->
+  <section class="hero" ng-controller="SlackInviteController">
+    <div class="hero-content">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+            <h1 class="title flex justify-center valign-center">
+              <img src="./dist/images/Slack_Icon.png" style="width:64px;height:64px"> &nbsp;Join Our Slack Community
+            </h1>
+            <div class="control is-grouped">
+              <input type="text" class="input" placeholder="Email" ng-model="email">
+              <a ng-click="request_invite()" class="button is-warning text-primary">Request Invite</a>
+            </div>
+            <div class="">
+              <p>Join the official Slack channel for the tech community in Broward County!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <section class="hero is-medium is-dark">
+      <div class="hero-content">
+        <div class="container">
+          <h1 class="title">
+            Rise Up Community Board
+          </h1>
+          <h2 class="subtitle">
+            A community board for ranking and posting civic initiatives.
+          </h2>
+        </div>
+      </div>
+    </section>
+  </footer>
+  <!-- End Footer -->
+
+  <script src="./dist/lib/stamplay-js-sdk/dist/stamplay.min.js"></script>
+  <script src="./dist/javascripts/lib/prism.min.js"></script>
+  <script src="./dist/lib/angular/angular.js"></script>
+  <script src="./dist/lib/angular-stamplay/angular-stamplay.js"></script>
+  <script src="./dist/lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="./dist/lib/angular-aria/angular-aria.js"></script>
+  <script src="./dist/lib/angular-animate/angular-animate.js"></script>
+  <script src="./dist/lib/angular-sanitize/angular-sanitize.js"></script>
+  <script src="./dist/lib/moment/min/moment.min.js"></script>
+  <script src="./dist/lib/angular-moment/angular-moment.js"></script>
+  <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.angular.min.js"></script>
+  <script src="./dist/lib/tinymce-dist/tinymce.js"></script>
+  <script src="./dist/lib/angular-ui-tinymce/src/tinymce.js"></script>
+  <script src="./dist/javascripts/modules/modules.js"></script>
+  <script src="./dist/javascripts/services/services.min.js"></script>
+  <script src="./dist/javascripts/controllers/controllers.min.js"></script>
+
+</body>
+</html>

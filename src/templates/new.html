@@ -1,0 +1,38 @@
+<section class="questions">
+    <a class="button is-primary is-loading" ng-show="loading"></a>
+    <div ng-class="{ 'overlayed' : loading === true }">
+        <div class="container">
+            <section class="hero">
+
+                <div class="hero-content grey">
+                    <div class="is-text-left container">
+                        <h4 class="title is-4">Initiative Title</h4>
+                        <hr>
+                    </div>
+                    <div class="container shadow-1">
+                        <p class="control">
+                            <input type="text" class="input" ng-model="question.title" placeholder="Question Title">
+                        </p>
+                    </div>
+                </div>
+                <div class="hero-content grey">
+                    <div class="is-text-left container">
+                        <h4 class="title is-4">Summary <small>(Click below to edit)</small></h4>
+                        <hr>
+                    </div>
+                    <div class="container shadow-1 content-container" ng-if="!loading">
+                        <p class="control">
+                            <div ui-tinymce="tinymceOptions" ng-model="question.body"></div>
+                        </p>
+                    </div>
+                    <div class="is-clearfix container">
+                        <hr>
+                        <p class="is-pulled-right">
+                            <a class="button is-primary" ng-click="submitQuestion()">Submit Your Initiative</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
