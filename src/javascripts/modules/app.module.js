@@ -23,17 +23,17 @@ angular.module("app", ["ui.router","ngAnimate", "ngSanitize", "angularMoment",  
 }])
 
 .run(["$rootScope", "AccountService", function($rootScope, AccountService) {
-    Stamplay.init("[Your Stamplay APP ID]");
+    Stamplay.init("[riseup]");
 
     AccountService.currentUser().then(function(res) {
         $rootScope.currentUser = res;
         $rootScope.role = res ? res.givenRole.name : false;
     });
-    
+
 }])
 
 .constant("algoliaConfig", {
-    index : "[Your Algolia Index Name]",
-    appID : "[Algolia APP ID]",
-    searchOnlyKey : "[Algolia Search Only]"
+    index : "[initiative]",
+    appID : "[E5CLQBED03]",
+    searchOnlyKey : "[15f2eeb506a5bde4225673605afd6e77]"
 })
