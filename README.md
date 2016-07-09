@@ -12,5 +12,4 @@ This platform will:
 * let logged in users upvote or down vote initiatives    
 * let logged in users discuss initiatives in a comment thread    
 
-
 ###[Click here to see the demo site - coming soon](#)###
