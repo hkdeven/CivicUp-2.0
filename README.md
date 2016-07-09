@@ -3,7 +3,6 @@ RiseUp
 
 **This project is built with [AngularJS](http://angularjs.org) on the [Stamplay](https://stamplay.com) platform to show you how to build community platform like [Stack Overflow](http://stackoverflow.com/) where users can create, search, comment, and vote on community initiatives.  This project was inspired by the earlier CivicUp project.**    
 
-
 This platform will:    
 
 * let users read and search every posting available on the site    
