@@ -1,0 +1,256 @@
+
+<div class="tab-pane-group">
+  <a class="button is-primary is-loading" ng-show="loading"></a>
+  
+  <div ng-class="{ 'overlayed' : loading === true }">
+    
+    <div class="tabs is-fullwidth">
+      <ul class="container">
+        <li ng-class="{ 'is-active' : tab === 'question'}" ng-click="tab = 'question'">
+          <a><i class="fa fa-question-circle"></i>Initiative</a>
+        </li>
+        <li ng-class="{ 'is-active' : tab === 'solution'}" ng-click="tab = 'solution'">
+          <a><i class="fa fa-check-circle" ng-show="solution._id"></i> Solution</a>
+        </li>
+        <li ng-class="{ 'is-active' : tab === 'comments'}" ng-click="tab = 'comments'">
+          <a><i class="fa fa-comments"></i> Discussion</a>
+        </li>
+      </ul>
+    </div>
+
+
+
+    
+    <div class="tab-pane" style="padding: 30px" ng-class="{ 'hidden' : tab !== 'question' || loading === true }">
+      <section class="hero">
+        <div class="hero-content container">
+          <div class="container">
+            <h1 class="title" ng-show="!hide_question">
+              {{question.title}}
+            </h1>
+            <p class="control" ng-show="hide_question">
+              <input type="text" class="input" ng-model="question.title">
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section ng-show="!hide_question">
+        <div class="hero-content container">
+          <div class="container content-container">
+            <p ng-bind-html="question.body"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container shadow-1" ng-show="hide_question">
+        <div ng-show="role === 'admin' || question.owner._id === currentUser._id">
+          <div type="text" ui-tinymce="tinymceOptions" ng-model="question.body"></div>
+        </div>
+      </section>
+
+
+
+      
+      <section class="container is-clearfix">
+
+        <hr>
+
+        <div class="is-pulled-left">
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img ng-src="{{ question.owner.profileImg }}">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><a href="">{{ question.owner.displayName || question.owner.username }}</a></strong>
+                </p>
+              </div>
+              <nav class="navbar">
+                <div class="navbar-left">
+                  <span am-time-ago="question.dt_create"></span>
+                </div>
+              </nav>
+            </div>
+          </article>
+        </div>
+
+        <div class="is-pulled-right" ng-show="role === 'admin' || question.owner._id === currentUser._id">
+          <p class="control" ng-hide="hide_question">
+            <a class="button is-primary is-outlined" ng-click="hide_question = !hide_question">Edit</a>
+          </p>
+          <p class="control" ng-hide="!hide_question">
+            <a class="button is-primary is-outlined" ng-click="hide_question = !hide_question">Cancel</a>
+            <a class="button is-primary" ng-click="updateQuestion()">Save</a>
+          </p>
+        </div>
+      </section>
+      
+
+    </div>
+    
+
+
+    
+    <div class="tab-pane" ng-class="{ 'hidden' : tab !== 'solution' || loading === true}">
+      <section class="hero">
+        <div class="hero-content container">
+          <div class="container">
+            <h1 class="title">
+              Solution
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      
+      <section ng-show="!hide_solution">
+        <div class="hero-content container">
+          <div class="container content-container">
+            <p ng-bind-html="solution.description"></p>
+            <p ng-show="no_solution">A solution has not yet been provided.</p>
+          </div>
+        </div>
+      </section>
+      
+
+      
+      <section class="container shadow-1" ng-show="hide_solution">
+        <div ng-show="role === 'admin' || solution.owner._id === currentUser._id || no_solution">
+          <div type="text" ui-tinymce="tinymceOptions" ng-model="solution.description"></div>
+        </div>
+
+
+</section>
+
+
+<section class="container is-clearfix">
+  <div ng-hide="no_solution || !currentUser" class="text-center">
+    <div class="is-text-centered">
+      Was this helpful?
+    </div>
+    <br>
+    <div class="flex justify-center valign-center">
+      <a ng-click="upvote(solution)"><i class="fa fa-thumbs-up vote"></i></a>
+      <button class="button is-small is-primary is-outlined votetotal ng-binding">{{ voteTotal }}</button>
+      <a ng-click="downvote(solution)"><i class="fa fa-thumbs-down vote"></i></a>
+    </div>
+  </div>
+  <hr>
+  
+  <div class="is-pulled-left">
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img ng-src="{{ solution.owner.profileImg }}">
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><a href="">{{ solution.owner.displayName || solution.owner.username }}</a></strong>
+          </p>
+        </div>
+        <nav class="navbar">
+          <div class="navbar-left">
+            <span am-time-ago="solution.dt_update"></span>
+          </div>
+        </nav>
+      </div>
+    </article>
+  </div>
+  
+
+  
+  <div class="is-pulled-right" ng-show="role === 'admin' || solution.owner._id === currentUser._id || no_solution">
+    <p class="control" ng-hide="hide_solution">
+      <a class="button is-primary is-outlined" ng-click="hide_solution = !hide_solution">
+        <span ng-show="!no_solution">Edit</span>
+        <span ng-show="no_solution">Add Solution</span>
+      </a>
+      <a class="button is-warning" ng-hide="no_solution" ng-click="deleteSolution()">Delete Solution</a>
+    </p>
+    <p class="control" ng-hide="!hide_solution">
+      <a class="button is-primary is-outlined" ng-click="hide_solution = !hide_solution">Cancel</a>
+      <a class="button is-primary" ng-click="addOrUpdateSolution(solution)">Save</a>
+    </p>
+  </div>
+</section>
+
+<br>
+</div>
+
+
+
+
+
+<div class="tab-pane" ng-class="{ 'hidden' : tab !== 'comments' || loading === true }">
+  <section class="hero">
+    <div class="hero-content container">
+      <div class="container">
+        <h1 class="title">
+          Discussion
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="container">
+
+    
+    <article class="media" ng-repeat="comment in comments | orderBy : 'dt_create'">
+      <figure class="media-left comment-avatar">
+        <p>
+          <img src="{{comment.picture}}" class="image is-64x64">
+          <small class="comment-timestamp" am-time-ago="comment.dt_create"></small>
+        </p>
+      </figure>
+      <div class="media-content comment-item">
+        <div class="content">
+          <p ng-bind-html="comment.text"></p>
+          <br>
+        </div>
+      </div>
+    </article>
+    
+
+
+    
+    <section ng-show="currentUser">
+      <hr>
+      <div ng-show="!show_comment" class="is-clearfix">
+        <button class="button is-primary is-pulled-right" ng-click="show_comment = !show_comment">Post A Comment</button>
+      </div>
+      <article class="media" ng-show="show_comment">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="{{currentUser.profileImg}}">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div type="text" ui-tinymce="tinymceOptions" ng-model="comment"></div>
+          <p class="control is-clearfix">
+            </p><div class="is-pulled-right">
+             <button class="button is-primary is-outlined" ng-click="show_comment = !show_comment">Cancel</button>
+             <button class="button is-primary" ng-click="addComment(question, comment)">Submit</button>
+           </div>
+         <p></p>
+       </div>
+     </article>
+     
+   </section>
+   <br>
+   <p class="is-text-centered" ng-show="!currentUser">
+     Login to join the discussion.
+    </p>
+    <br>
+   </section>
+ </div>
+ 
+
+</div>
+</div>

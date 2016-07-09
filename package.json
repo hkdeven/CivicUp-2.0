@@ -2,14 +2,14 @@
   "name": "civicup",
   "version": "0.0.1",
   "description": "An app for polling local community on civic initiatives.",
-  "main": "",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-beautify": "^1.1.2",
     "gulp-build": "^0.5.3",
@@ -25,5 +25,13 @@
   },
   "dependencies": {
     "bulma": "0.0.16"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkdeven/CivicUp-2.0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hkdeven/CivicUp-2.0/issues"
+  },
+  "homepage": "https://github.com/hkdeven/CivicUp-2.0#readme"
 }

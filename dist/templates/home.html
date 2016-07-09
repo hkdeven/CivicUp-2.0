@@ -1,0 +1,116 @@
+
+<section>
+  <div class="hero">
+    <div class="hero-content control-panel container" style="padding:35px 0 0 0">
+      <div class="columns" style="text-align:left;align-items: flex-end">
+        <div class="column is-6">
+          <p class="control">
+            <a ui-sref="New Request" class="button is-warning is-primary" ng-show="currentUser">
+              <i class="fa fa-plus-circle"></i> Submit A New Initiative
+            </a>
+          </p>
+          <p class="control is-grouped">
+            <input class="input" type="text" ng-change="paginate(1, per_page, sortby, question_query)" ng-model-options="{ debounce: 1000 }" ng-model="question_query" ng-init="question_query = ''">
+            <a class="button is-primary is-outlined">Search</a>
+          </p>
+        </div>
+        <div class="column is-6">
+          <p class="control flex valign-center justify-end">
+            <span>&nbsp; Per Page &nbsp;</span>
+            <span class="select">
+              <select ng-model="per_page" ng-change="paginate(1, per_page, sortby, question_query)">
+                <option value="{{ 5 }}">5</option>
+                <option value="{{ 10 }}">10</option>
+                <option value="{{ 25 }}">25</option>
+                <option value="{{ 50 }}">50</option>
+              </select>
+            </span>
+            <span>&nbsp; Sort By &nbsp;</span>
+            <span class="select">
+              <select ng-model="sortby" ng-disabled="question_query" ng-change="paginate(1, per_page, sortby, question_query)">
+                <option value="-dt_create">Recent</option>
+                <option value="-views">Views</option>
+              </select>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+<br>
+
+<section class="questions">
+  <a class="button is-primary is-loading" ng-show="loading"></a>
+  <p class="no-results" ng-if="pagination.total_elements === 0" ng-hide="loading">
+    No results for: <strong>"{{question_query}}"</strong>
+  </p>
+  <div ng-class="{ 'overlayed' : loading === true }">
+    <div class="container" ng-if="pagination.total_elements !== 0">
+     <table class="table flex justify-end">
+      <tbody class="top-labels">
+        <tr>
+          <td class="view-count"><small>Views</small></td>
+          <td class="vote-count"><small>Votes</small>&nbsp;</td>
+          <td class="comment-count"><small>Comments</small>&nbsp;&nbsp;</td>
+          <td class="solution-check"><small>Solution</small></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <article class="media container valign-center" ng-repeat="question in questionCollection">
+    <figure class="media-left">
+      <p class="image is-32x32">
+        <img ng-src="{{question.owner.profileImg}}">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <a ui-sref="Question Details({id : question._id})" class="question-link">
+          {{question.title}}
+        </a>
+      </div>
+    </div>
+    <div class="media-left">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="view-count"><i class="fa fa-eye"></i> {{ question.views || 0 }}</td>
+            <td> | </td>
+            <td class="vote-count"><i class="fa fa-thumbs-up"></i> {{question.solution_id[0].actions.votes.users_upvote.length - question.solution_id[0].actions.votes.users_downvote.length}}</td>
+            <td> | </td>
+            <td class="comment-count"><i class="fa fa-comment"></i> {{question.actions.comments.length}}</td>
+            <td> | </td>
+            <td class="solution-check">&nbsp;
+              <i class="fa" ng-class="{'fa-check-square' : question.solution_id[0]._id, 'fa-square-o' : !question.solution_id[0]._id }"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</div>
+</section>
+
+
+
+
+<nav class="pagination" ng-if="pagination.total_elements !== 0">
+  <ul ng-hide="loading">
+    <li>
+      <a class="button is-outlined is-small" ng-click="paginate(pagination.page - 1, per_page, sortby, question_query)" ng-class="{ 'is-disabled' : pagination.page === 1 }" ng-disabled="pagination.page === 1">Previous</a>
+    </li>
+    <li ng-repeat="page in pages track by $index">
+      <a class="button is-outlined is-small" ng-class="{ 'is-primary' : page === pagination.page }" ng-click="paginate(page, per_page, sortby, question_query);">{{ page }}</a>
+    </li>
+    <li>
+      <a class="button is-outlined is-small" ng-class="{ 'is-disabled' : pagination.page === pagination.total_pages }" ng-click="paginate(pagination.page + 1, per_page, sortby, question_query)" ng-disabled="pagination.page === pagination.total_pages">Next page</a>
+    </li>
+  </ul>
+</nav>
+
