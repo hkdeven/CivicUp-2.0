@@ -39,11 +39,9 @@
   </div>
 
 </section>
-<!-- Control Panel End -->
-
 
 <br>
-<!-- Questions -->
+<!-- Initiatives/Questions -->
 <section class="questions">
   <a class="button is-primary is-loading" ng-show="loading"></a>
   <p class="no-results" ng-if="pagination.total_elements === 0" ng-hide="loading">
@@ -96,16 +94,15 @@
   </article>
 </div>
 </section>
-<!-- Questions End -->
 
 <!-- Pagination -->
-<!-- <section class="hero pagination">
-  <a class="tag fa fa-chevron-left"  ></a>
-  <a  class="tag" >{{ page }}</a>
-  <a class="tag fa fa-chevron-right" ></a>
-</div>
-</section>
--->
+  <section class="hero pagination">
+    <a class="tag fa fa-chevron-left"  ></a>
+    <a  class="tag" >{{ page }}</a>
+    <a class="tag fa fa-chevron-right" ></a>
+  </div>
+  </section>
+
 <nav class="pagination"  ng-if="pagination.total_elements !== 0">
   <ul ng-hide="loading">
     <li>
@@ -119,4 +116,3 @@
     </li>
   </ul>
 </nav>
-<!-- Pagination End -->

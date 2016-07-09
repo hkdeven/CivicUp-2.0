@@ -17,7 +17,7 @@
   <div ng-controller="AccountController">
     <section class="hero is-primary is-medium">
 
-      <!-- Hero header: will stick at the top -->
+      <!-- Hero header -->
       <div class="hero-header">
         <header class="header">
           <div class="container">
@@ -54,12 +54,13 @@
         </header>
       </div>
 
-      <!-- Hero content: will be in the middle -->
+      <!-- Hero - middle -->
       <div class="nav" ng-class="{ 'hidden' : show === false, 'home' : state !== 'Home' }">
         <div class="hero-content">
           <div class="container">
             <h1 class="title flex justify-center valign-center">
-              <img  class="image is-64x64" src="./dist/images/main.png">&nbsp; RiseUp Community Board
+              <img  class="image" src="./dist/images/main.png" width="100">
+&nbsp; RiseUp Community Board
             </h1>
             <br>
             <h2 class="subtitle">

@@ -40,8 +40,6 @@
 
 </section>
 
-
-
 <br>
 
 <section class="questions">
@@ -98,7 +96,12 @@
 </section>
 
 
-
+  <section class="hero pagination">
+    <a class="tag fa fa-chevron-left"></a>
+    <a class="tag">{{ page }}</a>
+    <a class="tag fa fa-chevron-right"></a>
+  
+  </section>
 
 <nav class="pagination" ng-if="pagination.total_elements !== 0">
   <ul ng-hide="loading">
@@ -113,4 +116,3 @@
     </li>
   </ul>
 </nav>
-
