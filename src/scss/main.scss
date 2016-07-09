@@ -6,7 +6,7 @@
 @import 'bulma/bulma/config/variables';
 
 // Custom bulma config
-$purple: #272D4E;
+$purple: #6f7ab7;
 $yellow : #fbc02d;
 
 $primary: $purple;
@@ -168,7 +168,7 @@ div[ui-tinymce] {
 	opacity: 0.3;
 	cursor: not-allowed;
 	pointer-events: all;
-	
+
 }
 .questions {
 	min-height:200px;
@@ -327,5 +327,5 @@ img {
 	&:active {
 		color:$grey-dark !important
 	}
-	
+
 }
