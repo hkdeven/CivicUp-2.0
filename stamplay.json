@@ -1,0 +1,10 @@
+{
+  "appId": "riseup",
+  "apiKey": "e147cb9e8499ae0f5d0a075618df5e0cd4334285da24c724a79dba33759f3d0a",
+  "public": "./",
+  "ignore": [
+    "stamplay.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
