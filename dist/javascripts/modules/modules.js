@@ -32,6 +32,8 @@ angular.module("app", ["ui.router","ngAnimate", "ngSanitize", "angularMoment",  
 
 }])
 
+.constant("socialProvider", "facebook")
+
 .constant("algoliaConfig", {
     index : "[initiative]",
     appID : "[E5CLQBED03]",
