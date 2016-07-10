@@ -2,7 +2,7 @@ angular.module("app").factory("AccountService", ["$q", "$http", "$stamplay", fun
     return {
         login : function() {
             // SWITCH TO GITHUB
-            $stamplay.User.socialLogin('github');
+            $stamplay.User.socialLogin('facebook');
         },
         logout : function() {
             // SWITCH TO GITHUB
