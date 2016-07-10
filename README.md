@@ -10,5 +10,6 @@ This platform will:
 * let logged in users propose new initiatives to the community    
 * let logged in users upvote or down vote initiatives    
 * let logged in users discuss initiatives in a comment thread    
+* let visitors and users donate directly to the FLTA    
 
 ###[Click here to see the demo site - coming soon](#)###
