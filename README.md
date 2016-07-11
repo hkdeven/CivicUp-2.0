@@ -12,4 +12,4 @@ This platform will:
 * let logged in users discuss initiatives in a comment thread    
 * let visitors and users donate directly to the FLTA    
 
-###[Click here to see the demo site - coming soon](#)###
+###[Click here to see the live site](https://riseup.stamplayapp.com)###
