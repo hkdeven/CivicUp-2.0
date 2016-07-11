@@ -1,10 +1,10 @@
 {
-  "name": "stamplay-kb",
+  "name": "riseup",
   "version": "0.0.1",
   "authors": [
-    "isaiahgrey93 <isaiahgrey@gmail.com>"
+    "hkdeven <hkdeven@gmail.com>"
   ],
-  "description": "Knowledge base for Stamplayers to find solutions.",
+  "description": "A community board for ranking and posting civic initiatives.",
   "main": "",
   "moduleType": [],
   "license": "MIT",

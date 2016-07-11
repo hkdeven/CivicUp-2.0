@@ -113,7 +113,7 @@
         <div class="columns">
           <div class="column is-8 is-offset-2">
             <h1 class="title flex justify-center valign-center">
-              <img src="./dist/images/Slack_Icon.png" style="width:64px;height:64px"> &nbsp;Join Our Slack Community
+              <img src="./dist/images/Slack_Icon.png" style="width:32px;height:32px"> &nbsp;Join Our Slack Community
             </h1>
             <div class="control is-grouped">
               <input type="text" class="input" placeholder="Email" ng-model="email">
@@ -145,7 +145,11 @@
   </footer>
   <!-- End Footer -->
 
-  <script src="./dist/lib/stamplay-js-sdk/dist/stamplay.min.js"></script>
+  <script>
+    var stamplay_appid = "riseup";
+    var stamplay_webhookid = "slack-invites";
+  </script>
+  <script src="https://drrjhlchpvi7e.cloudfront.net/libs/stamplay-js-sdk/1.2.5/stamplay.min.js"></script>
   <script src="./dist/javascripts/lib/prism.min.js"></script>
   <script src="./dist/lib/angular/angular.js"></script>
   <script src="./dist/lib/angular-stamplay/angular-stamplay.js"></script>
