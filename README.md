@@ -8,7 +8,7 @@ This platform will:
 * let users read and search every posting available on the site    
 * let users signup using their GitHub account to interact with the content of the website    
 * let logged in users propose new initiatives to the community    
-* let logged in users upvote or down vote initiatives    
+* let logged in users up vote or down vote initiatives    
 * let logged in users discuss initiatives in a comment thread    
 * let visitors and users donate directly to the FLTA    
 
